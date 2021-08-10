@@ -1,0 +1,75 @@
+// width
+.w-full {
+  width: 100%;
+}
+.w-screen {
+  width: 100vw;
+}
+// height
+.h-full {
+  height: 100%;
+}
+.h-screen {
+  height: 100vh;
+}
+/* 间距 */
+@for $i from 1 through 10 {
+  .p-#{5 * $i} {
+    padding: 5px * $i !important;
+  }
+  .pt-#{5 * $i} {
+    padding-top: 5px * $i !important;
+  }
+  .pr-#{5 * $i} {
+    padding-right: 5px * $i !important;
+  }
+  .pb-#{5 * $i} {
+    padding-bottom: 5px * $i !important;
+  }
+  .pl-#{5 * $i} {
+    padding-left: 5px * $i !important;
+  }
+  .m-#{5 * $i} {
+    margin: 5px * $i !important;
+  }
+  .mt-#{5 * $i} {
+    margin-top: 5px * $i !important;
+  }
+  .mr-#{5 * $i} {
+    margin-right: 5px * $i !important;
+  }
+  .mb-#{5 * $i} {
+    margin-bottom: 5px * $i !important;
+  }
+  .ml-#{5 * $i} {
+    margin-left: 5px * $i !important;
+  }
+  .px-#{5 * $i} {
+    padding-left: 5px * $i !important;
+    padding-right: 5px * $i !important;
+  }
+  .py-#{5 * $i} {
+    padding-top: 5px * $i !important;
+    padding-bottom: 5px * $i !important;
+  }
+  .mx-#{5 * $i} {
+    margin-left: 5px * $i !important;
+    margin-right: 5px * $i !important;
+  }
+  .my-#{5 * $i} {
+    margin-top: 5px * $i !important;
+    margin-bottom: 5px * $i !important;
+  }
+}
+
+
+// font-size
+
+$font-size: 12;
+@while $font-size <= 30 {
+  .text-#{$font-size}px {
+    font-size: 1px * $font-size !important;
+  }
+  $font-size: $font-size + 2;
+}
+

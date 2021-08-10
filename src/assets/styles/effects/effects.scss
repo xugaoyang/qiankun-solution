@@ -1,0 +1,275 @@
+// 圆角
+@for $i from 1 through 10 {
+  .rounded-#{$i} {
+    border-radius: 1px * $i !important;
+  }
+}
+.rounded-full {
+  border-radius: 9999px !important;
+}
+.rounded-none {
+  border-radius: 0px !important;
+}
+// 常用阴影
+
+// 常用动画
+.animate-none {
+  animation: none;
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+.animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animationTimingFunction: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animationTimingFunction: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* 过渡 */
+.transition {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-none {
+  transition-property: none;
+}
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-colors {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-shadow {
+  transition-property: box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+// 持续时间 + 过渡延迟
+@each $property in 75, 100, 150, 200, 300, 500,700, 1000 {
+  .duration-#{$property} {
+    transition-duration: #{$property}ms;
+  }
+  .delay-#{$property} {
+    transition-delay: #{$property}ms;
+  }
+}
+// 过渡函数
+.ease-linear {
+  transition-timing-function: linear;
+}
+.ease-in {
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+.ease-out {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 转换 transform */
+.transform {
+  transform: translateX(0) translateY(0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1);
+}
+.transform-gpu {
+  transform: translate3d(0,0,0);
+}
+.tranform-none {
+  transform: none;
+}
+// 原点 
+@each $name, $val in (center, center), (top, top), (top-right, top right), (right, right), (bottom, bottom), (left, left), (bottom-right, bottom right), (bottom-left, bottom left), (top-left, top left) {
+  .origin-#{$name} {
+    transform-origin: $val;
+  }
+}
+
+// 缩放
+$scaleVal: 0, 50, 75, 100, 125, 150;
+@each $val in $scaleVal {
+  .scale-#{$val} {
+    transform: scale(#{$val}/100);
+  }
+  .scale-x-#{$val} {
+    transform: scaleX(#{$val}/100);
+  }
+  .scale-y-#{$val} {
+    transform: scaleY(#{$val}/100);
+  }
+}
+// 旋转
+$rotateVal: -180, -135, -90, -45, 0, 45, 90, 135, 180;
+@each $val in $rotateVal {
+  .rotate-#{$val} {
+    transform: rotate(#{$val}deg);
+  }
+}
+// 平移
+$translateVal: -100,-50, -30, -10, -5, 0, 5, 10, 30, 100;
+@each $val in $translateVal {
+  .translate-x-#{$val} {
+    transform: translateX(#{$val}px);
+  }
+  .translate-y-#{$val} {
+    transform: translateY(#{$val}px);
+  }
+}
+
+// 倾斜
+$skewVal: -20, -10, -5, 0, 5, 10, 15, 20;
+@each $val in $skewVal {
+  .skew-x-#{$val} {
+    transform: skewX(#{$val}deg);
+  }
+  .skew-y-#{$val} {
+    transform: skewY(#{$val}deg);
+  }
+}
+
+/* 不透明度 */
+$opacityVal: 0;
+@while $opacityVal <= 100 {
+  .opacity-#{$opacityVal} {
+    opacity: $opacityVal / 100 !important;
+  }
+  $opacityVal: $opacityVal + 10;
+}
+
+/* 文本装饰 */
+@each $property in underline, line-through, no-underline {
+  .#{$property} {
+    text-decoration: $property !important;
+  }
+}
+
+/* 文本转换 */
+@each $property in uppercase, lowercase, capitalize, normal-case {
+  @if $property == normal-case {
+    .normal-case {
+      text-transform: none !important;
+    }
+  } @else {
+    .#{$property} {
+      text-decoration: $property !important;
+    }
+  }
+}
+
+/* 文本溢出 */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.overflow-ellipsis {
+  text-overflow: ellipsis;
+}
+.overflow-clip {
+  text-overflow: clip;
+}
+
+/* 字体粗细 */
+@each $name, $val in (thin, 100), (normal, 400), (bold, 700) {
+  .font-#{$name} {
+    font-weight: $val !important;
+  }
+}
+
+/* 字体样式 */
+.italic {
+  font-style: italic;
+}
+.not-italic {
+  font-style: normal;
+}
+
+/* 交互 */
+// 去掉表单默认样式
+.appearance-none {
+  appearance: none;
+}
+// textarea 调整大小
+@each $name, $val in (none, none), (y, vertical), (x, horizontal), ('', both) {
+  @if $name == '' {
+    .resize {
+      resize: both;
+    }
+  } @else {
+    .resize-#{$name} {
+      resize: $val;
+    }
+  }
+}
+// 鼠标
+@each $property in auto, default, pointer, wait, text, move, not-allowed {
+  .cursor-#{$property} {
+    cursor: $property;
+  }
+}
+// 指向事件
+@each $property in none auto {
+  .pointer-events-#{$property} {
+    pointer-events: $property;
+  }
+}
+// 文本选择
+@each $property in none auto text all {
+  .select-#{$property} {
+    user-select: $property;
+  }
+}

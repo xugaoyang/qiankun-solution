@@ -1,0 +1,139 @@
+/* 网格布局 */
+
+.grid {
+  display: grid;
+}
+/* 列 */
+@for $i from 1 through 12 {
+  .grid-cols-#{$i} {
+    grid-template-columns: repeat($i, minmax(0, 1fr))
+  }
+  .col-span-#{$i} {
+    grid-column: span $i / span $i;
+  }
+}
+@for $i from 1 through 13 {
+  .col-start-#{$i} {
+    grid-column-start: $i;
+  }
+  .col-end-#{$i} {
+    grid-column-end: $i;
+  }
+}
+.grid-cols-none {
+  grid-template-columns: none;
+}
+.col-span-full {
+  grid-column: 1 / -1;
+}
+.col-start-auto {
+  grid-column-start: auto;
+}
+.col-end-auto {
+  grid-column-end: auto;
+}
+/* 行 */
+@for $i from 1 through 6 {
+  .grid-rows-#{$i} {
+    grid-template-rows: repeat($i, minmax(0, 1fr))
+  }
+  .row-span-#{$i} {
+    grid-row: span $i / span $i;
+  }
+}
+
+@for $i from 1 through 7 {
+  .row-start-#{$i} {
+    grid-column-start: $i;
+  }
+  .row-end-#{$i} {
+    grid-column-end: $i;
+  }
+}
+.grid-rows-none {
+  grid-template-rows: none;
+}
+.row-span-full {
+  grid-row: 1 / -1;
+}
+.row-start-auto {
+  grid-row-start: auto;
+}
+.row-end-auto {
+  grid-row-end: auto;
+}
+@each $property in row, column, row-dense, col-dense {
+  .grid-flow-#{$property} {
+    @if $property == row-dense {
+      grid-auto-flow: row dense;
+    } @else if $property == col-dense {
+      grid-auto-flow: column dense;
+    } @else {
+      grid-auto-flow: $property;
+    }
+  }
+}
+@each $property in auto, min, max, fr {
+  .auto-cols-#{$property} {
+    @if $property == min {
+      grid-auto-columns: min-content;
+    } @else if $property == max {
+      grid-auto-columns: max-content;
+    } @else if $property == fr {
+      grid-auto-columns: minmax(0, 1fr);
+    } @else {
+      grid-auto-columns: $property;
+    }
+  }
+  .auto-rows-#{$property} {
+    @if $property == min {
+      grid-auto-rows: min-content;
+    } @else if $property == max {
+      grid-auto-rows: max-content;
+    } @else if $property == fr {
+      grid-auto-rows: minmax(0, 1fr);
+    } @else {
+      grid-auto-rows: $property;
+    }
+  }
+}
+
+// gap
+$gap-size: 0;
+@while $gap-size <= 20 {
+  .gap-#{$gap-size} {
+    gap: 1px * $gap-size;
+  }
+  .gap-x-#{$gap-size} {
+    column-gap: 1px * $gap-size;
+  }
+  .gap-y-#{$gap-size} {
+    row-gap: 1px * $gap-size;
+  }
+  $gap-size: $gap-size + 5;
+}
+
+@each $property in auto, start, end, center, stretch {
+  // 控制网格项目如何沿其内联轴对齐
+  .justify-items-#{$property} {
+    justify-items: $property !important;
+  }
+  // 控制单个网格项如何沿其内联轴对齐
+  .justify-self-#{$property} {
+    justify-self: $property !important;
+  }
+  // 控制网格项目如何在水平和垂直方向对齐
+  .place-items-#{$property} {
+    place-items: $property !important;
+  }
+  // 控制单个项目如何在水平和垂直方向上对齐
+  .place-self-#{$property} {
+    place-self: $property !important;
+  }
+}
+
+@each $name, $val in (center, center), (start, start), (end, end), (between, space-between), (around, space-around), (evenly, space-evenly), (stretch, stretch) {
+  .place-content-#{$name} {
+    place-content: $val !important;
+  }
+}

@@ -1,0 +1,212 @@
+/* 盒模型 */
+@each $property in border, content {
+  .box-#{$property} {
+    box-sizing: #{$property}-box !important;
+  }
+}
+/* 元素框类型 */
+$displayTypes: block, inline-block, inline, flex, inline-flex, table, table-caption, table-cell, table-column, table-column-group, table-footer-group, table-header-group, table-row-group, table-row, flow-root, grid, inline-grid, contents, hidden;
+@each $property in $displayTypes {
+  .#{$property} {
+    @if $property == hidden {
+      display: none !important;
+    } @else {
+      display: $property !important;
+    }
+  }
+}
+/* 浮动 */
+@each $property in right, left, none {
+  .float-#{$property} {
+    float: $property !important;
+  }
+}
+@each $property in right, left, both, none {
+  .clear-#{$property} {
+    clear: $property !important;
+  }
+}
+/* object fit */
+@each $property in contain, cover, fill, none, scale-down {
+  .object-#{$property} {
+    object-fit: $property !important;
+  }
+}
+/* object position */
+@each $property in bottom, center, left, left-bottom, left-top, right, right-bottom, right-top, top {
+  .object-#{$property} {
+    @if $property == left-bottom {
+      object-position: left bottom !important;
+    } @else if $property == left-top {
+      object-position: left top !important;
+    } @else if $property == right-top {
+      object-position: right top !important;
+    } @else if $property == right-bottom {
+      object-position: right bottom !important;
+    } @else {
+      object-position: $property !important;
+    }
+  }
+}
+
+/* 溢出 */
+@each $property in auto, hidden, visible, scroll {
+  .overflow-#{$property} {
+    overflow: $property !important;
+  }
+  .overflow-x-#{$property} {
+    overflow: $property !important;
+  }
+  .overflow-y-#{$property} {
+    overflow: $property !important;
+  }
+}
+/* 滚动行为 */
+@each $property in auto, contain, none {
+  .overscroll-#{$property} {
+    overscroll-behavior: $property !important;
+  }
+  .overscroll-y-#{$property} {
+    overscroll-behavior-y: $property !important;
+  }
+  .overscroll-x-#{$property} {
+    overscroll-behavior-x: $property !important;
+  }
+}
+
+/* 定位 */
+@each $property in static, relative, absolute, fixed, sticky {
+  .position-#{$property} {
+    position: $property !important;
+  }
+}
+
+/* 可见性 */
+@each $property in visible, invisible {
+  .#{$property} {
+    @if $property == invisible {
+      visibility: hidden !important;
+    } @else {
+      visibility: $property !important;
+    }
+  }
+}
+
+/* z-index */
+.z-9999 {
+  z-index: 9999;
+}
+
+/* 弹性布局flex */
+.flex {
+  display: flex;
+}
+// flex-direction
+@each $name, $val in (row, row), (row-reverse, row-reverse), (col, column), (col-reverse, column-reverse) {
+  .flex-#{$name} {
+    flex-direction: $val!important;
+  }
+}
+// flex-wrap
+@each $property in wrap, wrap-reverse, nowrap {
+  .flex-#{$property} {
+    flex-wrap: $property !important;
+  }
+}
+// shrink & grow
+.flex-1 {
+  flex: 1 1 0%;
+}
+.flex-1 {
+  flex: 1 1 0%;
+}
+.flex-auto {
+  flex: 1 1 auto;
+}
+.flex-initial {
+  flex: 0 1 auto;
+}
+.flex-none {
+  flex: none;
+}
+.flex-grow-0 {
+  flex-grow: 0;
+}
+.flex-grow {
+  flex-grow: 1;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+.flex-shrink {
+  flex-shrink: 1;
+}
+$order-number: 1;
+@while $order-number <= 12 {
+  .order-#{$order-number} {
+    order: $order-number !important;
+  }
+  $order-number: $order-number + 1;
+}
+.order-first {
+  order: -9999;
+}
+.order-last {
+  order: 9999;
+}
+.order-none {
+  order: 0;
+}
+// 盒对齐
+@each $name, $val in (start, flex-start), (end, flex-end), (center, center), (between, space-between), (around, space-around), (evenly, space-evenly) {
+  .justify-#{$name} {
+    justify-content: $val !important;
+  }
+  .content-#{$name} {
+    align-content: $val !important;
+  }
+}
+@each $name, $val in (start, flex-start), (end, flex-end), (center, center), (baseline, baseline), (stretch, stretch) {
+  .items-#{$name} {
+    align-items: $val !important;
+  }
+  // flex或grid子项
+  .self-#{$name} {
+    align-self: $val !important;
+  }
+}
+
+
+
+/* 文本对齐 */
+@each $property in left, center, right, justify {
+  .text-#{$property} {
+    text-align: $property !important;
+  }
+}
+
+/* 垂直对齐 */
+@each $property in baseline, top, middle, bottom, text-top, text-bottom {
+  .vertical-#{$property} {
+    vertical-align: $property !important;
+  }
+}
+
+/* 文本空格 */
+@each $property in normal, nowrap, pre, pre-line, pre-wrap {
+  .whitespace-#{$property} {
+    white-space: $property !important;
+  }
+}
+
+/* 文本换行 */
+.break-normal {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+.break-words {
+  overflow-wrap: break-word;
+}
+.break-all {
+  word-break: break-all;
+}
