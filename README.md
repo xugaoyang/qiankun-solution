@@ -24,4 +24,3 @@ yarn deploy
 
 - [ ] config outside
 
-- [ ] plant/data integrated
