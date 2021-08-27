@@ -1,11 +1,13 @@
 # wiz_qiankun
 
 ## Project setup
+
 ```
 yarn setup
 ```
 
 ## Compiles and hot-reloads for development
+
 ```
 yarn start
 ```
@@ -22,6 +24,20 @@ yarn deploy
 
 - [x] get static assets correct by refreshing
 
-- [ ] config outside
+- [x] different application router jump [keep optimizing pagetag Component]
 
-- [ ] plant/data integrated
+- [x] config outside
+
+- [x] fake login
+
+- [ ] global loading
+
+- [ ] global error router handler
+
+- [ ] global request method
+
+- [ ] global error handler
+
+- [x] eslint/prettier
+
+- [ ] common dependencies [lerna or monorepo]

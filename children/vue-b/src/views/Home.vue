@@ -12,23 +12,23 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: "home",
+  name: 'home',
   components: {
-    HelloWorld
+    HelloWorld,
   },
   computed: {
     currentLang() {
-      return this.$store.state.global.currentLang;
+      return this.$root.globalStore.getters.currentLang
     },
     currentTheme() {
-      return this.$store.state.global.currentTheme;
-    }
+      return this.$root.globalStore.getters.currentTheme
+    },
   },
   created() {
     // this.$store.commit("global/setGlobalState", { currentTheme: "black" });
-  }
-};
+  },
+}
 </script>

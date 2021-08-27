@@ -1,0 +1,15 @@
+
+{
+  "apps": [
+    {
+      "name": "vue-a",
+      "entry": "//localhost:7100",
+      "activeRule": "/vue-a"
+    },
+    {
+      "name": "vue-b",
+      "entry": "//localhost:7188",
+      "activeRule": "/vue-b"
+    }
+  ]
+}

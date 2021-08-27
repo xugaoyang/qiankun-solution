@@ -6,21 +6,28 @@
       --
       {{ currentTheme }}
     </div>
+    <div>
+      <button @click="changeLang()">语言切换</button>
+    </div>
   </div>
 </template>
 <script>
 export default {
-  name: "about",
+  name: 'about',
   computed: {
     currentLang() {
-      return this.$store.state.global.currentLang;
+      return this.$root.globalStore.state.currentLang
     },
     currentTheme() {
-      return this.$store.state.global.currentTheme;
-    }
+      return this.$root.globalStore.state.currentTheme
+    },
   },
-  created() {
-    // this.$store.commit("global/setGlobalState", { currentTheme: "white" });
-  }
-};
+  created() {},
+  methods: {
+    async changeLang() {
+      const lang = this.currentLang === 'zh' ? 'en' : 'zh'
+      this.$root.globalStore.dispatch('currentLang', lang)
+    },
+  },
+}
 </script>

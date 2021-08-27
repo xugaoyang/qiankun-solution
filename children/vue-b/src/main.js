@@ -1,9 +1,8 @@
 import './public-path'
-import Vue from "vue"
-import App from "./App.vue"
-import routes from "./router"
-import store from "@/store"
-import { store as commonStore } from 'common'
+import Vue from 'vue'
+import App from './App.vue'
+import routes from './router'
+import store from '@/store'
 import VueRouter from 'vue-router'
 
 Vue.config.productionTip = false
@@ -12,11 +11,12 @@ let router = null
 let instance = null
 
 const render = (props = {}) => {
-  const { container, routerBase } = props
+  const { container, routerBase, globalStore, globalFn } = props
+  Vue.prototype.$globalFn = globalFn
   router = new VueRouter({
     base: window.__POWERED_BY_QIANKUN__ ? routerBase : '/',
-    mode: process.env.VUE_APP_ROUTER_MODE || 'hash',
-    routes
+    mode: process.env.VUE_APP_ROUTER_MODE,
+    routes,
   })
   router.afterEach((to) => {
     const displayName = to.meta ? to.meta.title : '404'
@@ -29,42 +29,38 @@ const render = (props = {}) => {
       path: to.path,
       query: to.query,
       displayName,
-      system: routerBase
+      system: routerBase,
     }
-    const pageTags = store.state.global.pageTags
+    const pageTags = globalStore.getters.pageTags
     const exist = pageTags.find((item) => item.displayName === displayName)
     if (!exist) {
-      pageTags.push(tag)
-      store.commit('global/setGlobalState', {
-        pageTags
-      })
+      globalStore.dispatch('addTag', tag)
     }
-    store.commit('global/setGlobalState', {
-      currentTag: tag
-    })
-    console.log('data vuex', store.state)
+    globalStore.dispatch('currentTag', tag)
   })
   instance = new Vue({
     router,
     store,
+    data() {
+      return {
+        globalStore,
+      }
+    },
     render: (h) => h(App),
   }).$mount(container ? container.querySelector('#app') : '#app')
 }
 
 // 独立运行时
 if (!window.__POWERED_BY_QIANKUN__) {
-  commonStore.globalRegister(store)
-  // store.commit('global/setGlobalState', payload)
   render()
 }
 
 export const bootstrap = async () => {
-  console.log('[vue] vue b app bootstrap')
+  console.log('[vue] vue a app bootstrap')
 }
 
 export const mount = async (props) => {
   console.log('[vue] props from main framework', props)
-  commonStore.globalRegister(store, props)
   render(props)
 }
 

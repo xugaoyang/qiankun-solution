@@ -1,15 +1,17 @@
-
 const { name } = require('./package.json')
 
-const publicPath = (process.env.VUE_APP_MODULE_PATH && `/${process.env.VUE_APP_MODULE_PATH}/`) || '/'
+const publicPath =
+  (process.env.VUE_APP_MODULE_PATH && `/${process.env.VUE_APP_MODULE_PATH}/`) || '//localhost:7100'
+console.log('vue-a-publicpath', publicPath)
 module.exports = {
   publicPath: publicPath,
-  transpileDependencies: ['common'],
   devServer: {
     port: 7100,
     headers: {
-      'Access-control-Allow-Origin': '*'
-    }
+      'Access-control-Allow-Origin': '*',
+      'Access-control-Allow-Methods': '*',
+      'Access-control-Allow-Headers': '*',
+    },
   },
   chainWebpack: (config) => {
     config.module
@@ -22,11 +24,11 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: 'fonts/[name].[hash:8].[ext]',
-            publicPath
-          }
-        }
+            publicPath,
+          },
+        },
       })
-      .end();
+      .end()
     config.module
       .rule('images')
       .use('url-loader')
@@ -37,19 +39,17 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: 'img/[name].[hash:8].[ext]',
-            publicPath
-          }
-        }
+            publicPath,
+          },
+        },
       })
-      .end();
+      .end()
   },
   configureWebpack: {
     output: {
       library: `${name}`,
       libraryTarget: 'umd',
-      jsonpFunction: `webpackJsonp_${name}`
-    }
-  }
+      jsonpFunction: `webpackJsonp_${name}`,
+    },
+  },
 }
-
-

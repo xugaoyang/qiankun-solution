@@ -6,23 +6,35 @@
       --
       {{ currentTheme }}
     </div>
+    <div>
+      <el-date-picker></el-date-picker>
+    </div>
+    <div>
+      <button @click="$globalFn.toLoginPage()">登录跳转</button>
+    </div>
+    <div>
+      <button @click="changeTheme()">主题切换</button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "about",
+  name: 'about',
   computed: {
     currentLang() {
-      return this.$store.state.global.currentLang;
+      return this.$root.globalStore.state.currentLang
     },
     currentTheme() {
-      return this.$store.state.global.currentTheme;
-    }
+      return this.$root.globalStore.state.currentTheme
+    },
   },
-  created() {
-    // this.$store.commit("global/setGlobalState", { currentLang: "en" });
-    console.log("-------------", this.$store.state.global);
-  }
-};
+  methods: {
+    async changeTheme() {
+      const theme = this.currentTheme === 'white' ? 'black' : 'white'
+      this.$root.globalStore.dispatch('currentTheme', theme)
+    },
+  },
+  created() {},
+}
 </script>

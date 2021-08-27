@@ -24,12 +24,7 @@
           <!-- {{ userInfo ? userInfo.userName : "非法登录" }} -->
         </div>
         <div class="float-right mr-10 mt-15">
-          <el-select
-            filterable
-            v-model="currentLang"
-            style="width: 100px"
-            size="mini"
-          >
+          <el-select filterable v-model="currentLang" style="width: 100px" size="mini">
             <el-option label="中文" value="zh"></el-option>
             <el-option label="English" value="en"></el-option>
           </el-select>
@@ -52,8 +47,6 @@
 </template>
 
 <script type="text/babel">
-import store from '@/store'
-
 export default {
   name: 'headerBar',
   components: {},
@@ -62,26 +55,23 @@ export default {
     return {}
   },
   computed: {
-    globalState() {
-      return store.getGlobalState()
-    },
-    permission() {
-      return store.getGlobalState('permission')
-    },
     currentTheme: {
       get() {
-        return store.getGlobalState('currentTheme')
+        return this.$store.getters.currentTheme
       },
       set(val) {
-        return store.setGlobalState(Object.assign(this.globalState, {currentTheme:val}))
+        // return store.setGlobalState(Object.assign(this.globalState, { currentTheme: val }))
+        return this.$store.dispatch('currentTheme', val)
       },
     },
     currentLang: {
       get() {
-        return store.getGlobalState('currentLang')
+        // return store.getGlobalState('currentLang')
+        return this.$store.getters.currentLang
       },
       set(val) {
-        return store.setGlobalState(Object.assign(this.globalState, {currentLang:val}))
+        // return store.setGlobalState(Object.assign(this.globalState, { currentLang: val }))
+        return this.$store.dispatch('currentLang', val)
       },
     },
   },
@@ -96,8 +86,8 @@ export default {
   activated() {},
   deactivated() {},
   beforeDestroy() {},
-  destroyed() {}
-};
+  destroyed() {},
+}
 </script>
 <style lang="scss" rel="stylesheet/scss" type="text/scss" scoped>
 .header-common {

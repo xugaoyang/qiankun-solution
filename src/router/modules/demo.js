@@ -1,6 +1,6 @@
 export default [
   {
-    path: 'about',
+    path: '/about',
     name: 'about',
     component: () => {
       return import('@/views/About')
@@ -11,7 +11,7 @@ export default [
     children: [],
   },
   {
-    path: 'home',
+    path: '/home',
     name: 'home',
     component: () => {
       return import('@/views/Home')

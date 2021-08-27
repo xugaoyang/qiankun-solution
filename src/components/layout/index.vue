@@ -18,25 +18,24 @@
 </template>
 
 <script type="text/babel">
-import SideBar from "@/components/layout/SideBar";
-import Header from "@/components/layout/Header";
-import PageTags from "@/components/layout/PageTags";
+import SideBar from '@/components/layout/SideBar'
+import Header from '@/components/layout/Header'
+import PageTags from '@/components/layout/PageTags'
 
 export default {
-  name: "layout",
+  name: 'layout',
   components: {
     SideBar,
     Header,
-    PageTags
+    PageTags,
   },
   mixins: [],
   data() {
-    return {
-    }
+    return {}
   },
   computed: {},
   watch: {},
-  async created() {},
-  methods: {}
-};
+  created() {},
+  methods: {},
+}
 </script>

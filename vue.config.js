@@ -1,10 +1,9 @@
 module.exports = {
-  transpileDependencies: ['common'],
-  // publicPath: './',
-  configureWebpack: {
-    // output: {
-    //   filename: `js/[name].[hash:8].js`,
-    //   chunkFilename: `js/[name].[hash:8].js`,
-    // }
+  devServer: {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Headers': '*',
+    }
   }
 }

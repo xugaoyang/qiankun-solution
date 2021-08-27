@@ -3,11 +3,7 @@
     <template slot="title">
       {{ model.name }}
     </template>
-    <SideBarItem
-      v-for="item in model.children"
-      :key="item.id"
-      :model="item"
-    ></SideBarItem>
+    <SideBarItem v-for="item in model.children" :key="item.id" :model="item"></SideBarItem>
   </el-submenu>
   <el-menu-item v-else @click="goto(model)" :title="model.name">
     {{ model.name }}
@@ -20,7 +16,7 @@ export default {
     return {}
   },
   props: {
-    model: Object
+    model: Object,
   },
   computed: {
     hasChild() {
@@ -33,10 +29,11 @@ export default {
   },
   methods: {
     goto(item) {
-      history.pushState(null, item.url, item.url)
-    }
-  }
-};
+      window.history.pushState(null, item.url, item.url)
+      // this.$router.push(item.url)
+    },
+  },
+}
 </script>
 
 <style lang="scss" rel="stylesheet/scss" type="text/scss" scoped></style>
